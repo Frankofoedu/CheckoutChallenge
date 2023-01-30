@@ -20,6 +20,11 @@ jobs:
       uses: jakejarvis/wait-action@master
       with:
           time: '5s'
+    - name: Generate Migration bundle
+      shell: pwsh
+      run: |
+          cd ./src/PaymentGateway.API
+          dotnet ef migrations bundle --self-contained -r ubuntu-x64 -v --force
     - name: Run Migration
       shell: pwsh
       run: |

@@ -11,7 +11,7 @@ try {
     $postgresConnection = $appSettings.ConnectionStrings.PostgresConnection
 
     Set-Location  -Path ./src/PaymentGateway.API/
-    $output = ./efbundle.exe --connection $postgresConnection --verbose    #https://stackoverflow.com/a/61674353
+    $output = ./efbundle --connection $postgresConnection --verbose    #https://stackoverflow.com/a/61674353
 
     if ($LastExitCode -ne 0) { #catch efcore errors and log them
     
