@@ -7,6 +7,7 @@ using Xunit;
 
 namespace PaymentGateway.IntegrationTests
 {
+    [Collection("SetupDatabase")]
     public class CreatePaymentIntegrationTests : IClassFixture<WebApplicationFactory<Program>>
     {
         private readonly WebApplicationFactory<Program> _factory;
