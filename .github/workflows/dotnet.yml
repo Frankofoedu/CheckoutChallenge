@@ -23,7 +23,7 @@ jobs:
     - name: Run Migration
       shell: pwsh
       run: |
-          ./src/Payment.API/database_migration.ps1
+          ./src/PaymentGateway.API/database_migration.ps1
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
