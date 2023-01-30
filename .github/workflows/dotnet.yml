@@ -22,8 +22,9 @@ jobs:
           time: '5s'
     - name: Run Migration
       shell: pwsh
-      run: |
-        ./src/PaymentGateway.API/database_migration.ps1
+      run: |         
+          Set-Location  -Path ./src/PaymentGateway.API
+          ./database_migration.ps1
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
