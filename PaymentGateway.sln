@@ -3,21 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGateway.API", "src\PaymentGateway.API\PaymentGateway.API.csproj", "{D1F98352-248D-4CBC-96C7-D9362922AFF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentGateway.API", "src\PaymentGateway.API\PaymentGateway.API.csproj", "{D1F98352-248D-4CBC-96C7-D9362922AFF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGateway.UnitTests", "tests\PaymentGateway.UnitTests\PaymentGateway.UnitTests.csproj", "{D724BC15-DB82-4673-8435-DE5DB00A11A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentGateway.UnitTests", "tests\PaymentGateway.UnitTests\PaymentGateway.UnitTests.csproj", "{D724BC15-DB82-4673-8435-DE5DB00A11A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGateway.IntegrationTests", "tests\PaymentGateway.IntegrationTests\PaymentGateway.IntegrationTests.csproj", "{A48A2714-11BB-413C-928D-3778F210B1CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentGateway.IntegrationTests", "tests\PaymentGateway.IntegrationTests\PaymentGateway.IntegrationTests.csproj", "{A48A2714-11BB-413C-928D-3778F210B1CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGateway.MockBank", "src\PaymentGateway.MockBank\PaymentGateway.MockBank.csproj", "{0D5B04D7-C9A4-4985-8585-507581E84622}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentGateway.MockBank", "src\PaymentGateway.MockBank\PaymentGateway.MockBank.csproj", "{0D5B04D7-C9A4-4985-8585-507581E84622}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGateway.Shared", "src\PaymentGateway.Shared\PaymentGateway.Shared.csproj", "{9FD1F89F-4778-4B36-963E-73DE0FB4D97C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentGateway.Shared", "src\PaymentGateway.Shared\PaymentGateway.Shared.csproj", "{9FD1F89F-4778-4B36-963E-73DE0FB4D97C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentGateway.Core", "src\PaymentGateway.Core\PaymentGateway.Core.csproj", "{4EDB6A2E-F52D-43DE-A702-4CA8F82D756A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentGateway.Core", "src\PaymentGateway.Core\PaymentGateway.Core.csproj", "{4EDB6A2E-F52D-43DE-A702-4CA8F82D756A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A7FC57AA-145E-4EA1-A764-5524453029AD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{509964F1-7157-4E6A-BDF3-F3497094D1D0}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{3C33B1D5-31A9-4C35-A0C5-4CA7D67F6866}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{4EDB6A2E-F52D-43DE-A702-4CA8F82D756A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EDB6A2E-F52D-43DE-A702-4CA8F82D756A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EDB6A2E-F52D-43DE-A702-4CA8F82D756A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C33B1D5-31A9-4C35-A0C5-4CA7D67F6866}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C33B1D5-31A9-4C35-A0C5-4CA7D67F6866}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C33B1D5-31A9-4C35-A0C5-4CA7D67F6866}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C33B1D5-31A9-4C35-A0C5-4CA7D67F6866}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
