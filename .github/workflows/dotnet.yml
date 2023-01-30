@@ -28,7 +28,7 @@ jobs:
       shell: pwsh
       run: |
           cd ./src/PaymentGateway.API
-          dotnet ef migrations bundle --self-contained -r ubuntu-x64 -v
+          dotnet ef migrations bundle
     - name: Run Migration
       shell: pwsh
       run: |
