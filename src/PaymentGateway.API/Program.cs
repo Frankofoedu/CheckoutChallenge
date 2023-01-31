@@ -4,6 +4,7 @@ using PaymentGateway.Core.Data;
 using PaymentGateway.Core.Services;
 using PaymentGateway.Core.ViewModels;
 using PaymentGateway.MockBank;
+using Prometheus;
 using Serilog;
 using System.Reflection;
 
@@ -51,11 +52,12 @@ try
     }
 
     app.UseHttpsRedirection();
-
+    app.UseRouting();
+    app.UseHttpMetrics();
     app.UseAuthorization();
 
     app.MapControllers();
-
+    app.MapMetrics();
     app.Run();
 }
 catch (Exception exception)
