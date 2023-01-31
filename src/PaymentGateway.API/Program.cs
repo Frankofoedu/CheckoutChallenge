@@ -40,7 +40,7 @@ try
     builder.Services.AddSwaggerGen();
 
     //register mapster mapping configs;
-    TypeAdapterConfig.GlobalSettings.Scan(Assembly.GetExecutingAssembly(), Assembly.GetAssembly(typeof(CreatePaymentResponseViewModel)));
+    TypeAdapterConfig.GlobalSettings.Scan(Assembly.GetExecutingAssembly(), Assembly.GetAssembly(typeof(CreatePaymentResponseDto)));
 
     var app = builder.Build();
 

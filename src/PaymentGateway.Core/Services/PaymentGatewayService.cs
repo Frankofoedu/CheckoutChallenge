@@ -11,9 +11,9 @@ namespace PaymentGateway.Core.Services
 {
     public interface IPaymentGatewayService
     {
-        Task<ResultModel<GetPaymentResponseViewModel>> GetPaymentRecord(GetPaymentQueryViewModel transactionId);
+        Task<ResultModel<GetPaymentResponseDto>> GetPaymentRecord(GetPaymentQueryDto transactionId);
 
-        Task<ResultModel<CreatePaymentResponseViewModel>> ProcessPayment(CreatePaymentRequestDto request);
+        Task<ResultModel<CreatePaymentResponseDto>> ProcessPayment(CreatePaymentRequestDto request);
     }
 
     public class PaymentGatewayService : IPaymentGatewayService
@@ -29,7 +29,7 @@ namespace PaymentGateway.Core.Services
             _Logger = logger;
         }
 
-        public async Task<ResultModel<GetPaymentResponseViewModel>> GetPaymentRecord(GetPaymentQueryViewModel request)
+        public async Task<ResultModel<GetPaymentResponseDto>> GetPaymentRecord(GetPaymentQueryDto request)
         {
             var transaction = await _transactionRepository.GetAll()
                 .Where(t => t.TransactionId == request.TransactionId && t.MerchantId == request.MerchantId)
@@ -39,32 +39,24 @@ namespace PaymentGateway.Core.Services
 
             if (transaction is null)
             {
-                return new ResultModel<GetPaymentResponseViewModel>(data: null, message: $"No transaction exists for transaction Id : {request.TransactionId}");
+                return new ResultModel<GetPaymentResponseDto>(data: null, message: $"No transaction exists for transaction Id : {request.TransactionId}");
             }
 
-            var transactionResponse = transaction.Adapt<GetPaymentResponseViewModel>();
+            var transactionResponse = transaction.Adapt<GetPaymentResponseDto>();
 
-            return new ResultModel<GetPaymentResponseViewModel>(transactionResponse);
+            return new ResultModel<GetPaymentResponseDto>(transactionResponse);
         }
 
-        public async Task<ResultModel<CreatePaymentResponseViewModel>> ProcessPayment(CreatePaymentRequestDto request)
+        public async Task<ResultModel<CreatePaymentResponseDto>> ProcessPayment(CreatePaymentRequestDto request)
         {
             //save transaction before calling external bank
             var transaction = request.Adapt<Transaction>();
             await _transactionRepository.AddAsync(transaction);
 
             //call external bank
-            var result = await _bankService.ProcessTransactionAsync(new BankRequestDTO
-            {
-                CardCvv = request.Card.Cvv,
-                CardExpiryMonth = request.Card.ExpiryMonth,
-                CardExpiryYear = request.Card.ExpiryYear,
-                CardHolderName = request.Card.OwnerName,
-                CardNumber = request.Card.Number,
-                Currency = request.Currency,
-                PaymentId = transaction.TransactionId,
-                TransactionAmount = request.Amount
-            });
+            var bankRequestDto = request.Adapt<BankRequestDTO>();
+            bankRequestDto.PaymentId = transaction.TransactionId;
+            var result = await _bankService.ProcessTransactionAsync(bankRequestDto);
 
             //update transaction
             //use hangfire to process this
@@ -75,7 +67,7 @@ namespace PaymentGateway.Core.Services
 
             await _transactionRepository.UpdateAsync(transaction);
 
-            var response = new CreatePaymentResponseViewModel
+            var response = new CreatePaymentResponseDto
             {
                 TransactionId = transaction.TransactionId,
                 BankTransactionId = transaction.BankTransactionId,
@@ -83,7 +75,7 @@ namespace PaymentGateway.Core.Services
                 Amount = transaction.Amount,
                 Currency = transaction.Currency,
                 Description = transaction.Description,
-                Card = new CardDetails
+                Card = new CardDetailsDto
                 {
                     Cvv = transaction.CardCvv,
                     ExpiryMonth = transaction.CardExpiryMonth,
@@ -92,7 +84,7 @@ namespace PaymentGateway.Core.Services
                     OwnerName = transaction.CardHolderName
                 }
             };
-            return new ResultModel<CreatePaymentResponseViewModel>(response);
+            return new ResultModel<CreatePaymentResponseDto>(response);
         }
     }
 }

@@ -28,7 +28,7 @@ namespace PaymentGateway.API.Controllers
         [HttpPost()]
         [MerchantIdRequirement()]
         [ServiceFilter(typeof(IdempotencyFilter))]
-        [ProducesResponseType(typeof(CreatePaymentResponseViewModel), 200)]
+        [ProducesResponseType(typeof(CreatePaymentResponseDto), 200)]
         [ProducesResponseType(404)]
         public async Task<ActionResult> ProcessPayment(CreatePaymentRequestDto request)
         {
@@ -63,13 +63,13 @@ namespace PaymentGateway.API.Controllers
         /// <returns>A payment</returns>
         [HttpGet("{transactionId}")]
         [MerchantIdRequirement()]
-        [ProducesResponseType(200, Type = typeof(GetPaymentResponseViewModel))]
+        [ProducesResponseType(200, Type = typeof(GetPaymentResponseDto))]
         [ProducesResponseType(404)]
         public async Task<IActionResult> GetPayment([FromRoute] Guid transactionId)
         {
             try
             {
-                var request = new GetPaymentQueryViewModel
+                var request = new GetPaymentQueryDto
                 {
                     MerchantId = Guid.Parse(User.FindFirstValue("MerchantId")),
                     TransactionId = transactionId
