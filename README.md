@@ -69,6 +69,11 @@ There are two projects that should hold tests for this solution.
 
 2. Unit test: Tests individual components of our solution.  Due to time constraints, I couldnt do much here.
 
+#### Deployment
+The project can be deployed to multiple cloud providers  but I will pick AWS or Azure as most engineers are primaarily using either of the two so it will be easier to maintain moving forward. 
+1. AWS: The application could be deployed to an elastic beanstalk infrastructure, ECS or even a lightsail instance. Secrets like connection keys could be stored AWS KMS.
+2. Azure: The application could be deployed to an app service, AKS(using the compose file) or an Azure VPS. Secrets like connection keys could be stored Azure key vault.
+
 
 ### Assumptions/Theories
 I made the following assumptions while building this solution
@@ -96,6 +101,7 @@ I made the following assumptions while building this solution
 1. Caching: Adding caching to the repository layer. This will allow faster response and relieve the database.
 2. Add more robust tests
 3. Improve the validation for the models
+4. An improv3ed way of storing secrets. Using a keyvault instead of appsettings which keeps it in source control.
 
     
 
