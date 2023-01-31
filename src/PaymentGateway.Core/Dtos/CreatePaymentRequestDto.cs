@@ -15,7 +15,7 @@ namespace PaymentGateway.Core.ViewModels
         [Required(ErrorMessage = "Description is invalid")]
         public string Description { get; set; }
 
-        public CardDetails Card { get; set; }
+        public CardDetailsDto Card { get; set; }
 
         [JsonIgnore]
         public Guid MerchantId { get; set; }

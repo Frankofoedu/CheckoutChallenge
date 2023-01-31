@@ -35,7 +35,7 @@ namespace PaymentGateway.IntegrationTests
                 Amount = 2000,
                 Currency = "$",
                 Description = "For shoes",
-                Card = new CardDetails
+                Card = new CardDetailsDto
                 {
                     Cvv = "123",
                     ExpiryMonth = 12,
@@ -54,7 +54,7 @@ namespace PaymentGateway.IntegrationTests
 
             string responseContent = await response.Content.ReadAsStringAsync();
             //serialize string to class
-            var jsondata = JsonConvert.DeserializeObject<CreatePaymentResponseViewModel>(responseContent);
+            var jsondata = JsonConvert.DeserializeObject<CreatePaymentResponseDto>(responseContent);
 
             //assert
             Assert.Equal(true, response.IsSuccessStatusCode);
@@ -77,7 +77,7 @@ namespace PaymentGateway.IntegrationTests
                 Amount = -1,
                 Currency = "$",
                 Description = "For shoes",
-                Card = new CardDetails
+                Card = new CardDetailsDto
                 {
                     Cvv = "123",
                     ExpiryMonth = 12,
@@ -113,7 +113,7 @@ namespace PaymentGateway.IntegrationTests
                 Amount = 1,
                 Currency = "$",
                 Description = "For shoes",
-                Card = new CardDetails
+                Card = new CardDetailsDto
                 {
                     Cvv = "123",
                     ExpiryMonth = 12,

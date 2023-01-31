@@ -3,7 +3,7 @@
 namespace PaymentGateway.Core.ViewModels
 {
     //todo: add more validations for this
-    public class CardDetails
+    public class CardDetailsDto
     {
         [StringLength(maximumLength: 16, MinimumLength = 16)]
         public string Number { get; set; }

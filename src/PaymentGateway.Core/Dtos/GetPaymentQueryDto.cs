@@ -1,6 +1,6 @@
 ﻿namespace PaymentGateway.Core.ViewModels
 {
-    public class GetPaymentQueryViewModel
+    public class GetPaymentQueryDto
     {
         public Guid TransactionId { get; set; }
         public Guid MerchantId { get; set; }

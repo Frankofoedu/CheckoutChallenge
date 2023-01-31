@@ -35,7 +35,7 @@ namespace PaymentGateway.IntegrationTests
                 Amount = 2000,
                 Currency = "dollar",
                 Description = "For shoes",
-                Card = new CardDetails
+                Card = new CardDetailsDto
                 {
                     Cvv = "123",
                     ExpiryMonth = 12,
@@ -53,18 +53,19 @@ namespace PaymentGateway.IntegrationTests
             HttpResponseMessage createResponse = await client.SendAsync(request);
             string responseContent = await createResponse.Content.ReadAsStringAsync();
             //serialize string to class
-            var createPaymentResponse = JsonConvert.DeserializeObject<CreatePaymentResponseViewModel>(responseContent);
+            var createPaymentResponse = JsonConvert.DeserializeObject<CreatePaymentResponseDto>(responseContent);
 
             //act
             var response = await client.GetAsync("/Payments/" + createPaymentResponse.TransactionId);
             var json = await response.Content.ReadAsStringAsync();
-            var getPaymentResponse = JsonConvert.DeserializeObject<GetPaymentResponseViewModel>(json);
+            var getPaymentResponse = JsonConvert.DeserializeObject<GetPaymentResponseDto>(json);
 
             Assert.True(response.IsSuccessStatusCode);
             Assert.Equal(System.Net.HttpStatusCode.OK, response.StatusCode);
             Assert.Equal(body.Amount, getPaymentResponse.Amount);
             Assert.Equal(body.Currency, getPaymentResponse.Currency);
             Assert.Equal(body.Description, getPaymentResponse.Description);
+            Assert.Equal(body.Card.OwnerName, getPaymentResponse.Card.OwnerName);
         }
 
         [Fact]

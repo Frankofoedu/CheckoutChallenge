@@ -2,7 +2,7 @@
 
 namespace PaymentGateway.Core.ViewModels
 {
-    public class GetPaymentResponseViewModel
+    public class GetPaymentResponseDto
     {
         public Guid TransactionId { get; set; }
         public Guid MerchantId { get; set; }
@@ -11,6 +11,6 @@ namespace PaymentGateway.Core.ViewModels
         public decimal Amount { get; set; }
         public string Description { get; set; }
         public TransactionStatus TransactionStatus { get; set; }
-        public CardDetails Card { get; set; }
+        public CardDetailsDto Card { get; set; }
     }
 }
